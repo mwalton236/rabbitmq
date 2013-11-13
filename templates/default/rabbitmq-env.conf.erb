@@ -20,9 +20,3 @@ export ERL_EPMD_ADDRESS=<%= node['rabbitmq']['erl_networking_bind_address'] %>
 <% if node['rabbitmq']['mnesiadir'] -%>MNESIA_BASE=<%= node['rabbitmq']['mnesiadir'] %><% end %>
 
 <% if node['rabbitmq']['open_file_limit'] -%>ulimit -n <%= node['rabbitmq']['open_file_limit'] %><% end %>
-###
-<% if node[:rabbitmq][:inet_dist_listen_min] && node[:rabbitmq][:inet_dist_listen_max] %>
-# Set the min/max ports used for Erlang distributed node protocol.
-# See http://www.rabbitmq.com/clustering.html#firewall
-SERVER_ERL_ARGS="$SERVER_ERL_ARGS -kernel inet_dist_listen_min <%= node[:rabbitmq][:inet_dist_listen_min] -%> -kernel inet_dist_listen_max <%= node[:rabbitmq][:inet_dist_listen_max] -%>"
-<% end %>
